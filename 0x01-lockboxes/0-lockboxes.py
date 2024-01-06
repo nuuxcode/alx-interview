@@ -18,13 +18,9 @@ def canUnlockAll(boxes):
             OPTIMIZE IDEA :
                 if we add 0 to setofkeys at start, we dont need for in 23
     """
-    setofkeys = []
+    setofkeys = [0]
     counter = 0
     total_boxes = len(boxes)
-    for key in boxes[0]:
-        if key < total_boxes and key not in setofkeys and key > 0:
-            setofkeys.append(key)
-            counter += 1
     index = 0
     while index < len(setofkeys):
         setkey = setofkeys[index]
