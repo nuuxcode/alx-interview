@@ -1,27 +1,23 @@
 #!/usr/bin/python3
 """doc doc doc"""
 import sys
-from typing import List
 
 
-def solve_queens_problem(board_size: int) -> List[List[int]]:
+def solve_queens_problem(board_size):
     """doc doc doc"""
 
-    def is_valid_position(pos: int, occupied_pos: List[int]) -> bool:
+    def is_valid_position(pos, occupied_pos):
         """doc doc doc"""
         for i in range(len(occupied_pos)):
             if (
-                occupied_pos[i] == pos
-                or occupied_pos[i] - i == pos - len(occupied_pos)
-                or occupied_pos[i] + i == pos + len(occupied_pos)
+                occupied_pos[i] == pos or
+                occupied_pos[i] - i == pos - len(occupied_pos) or
+                occupied_pos[i] + i == pos + len(occupied_pos)
             ):
                 return False
         return True
 
-    def place_queens(
-        board_size: int, index: int, occupied_pos: List[int],
-        solutions: List[List[int]]
-    ) -> None:
+    def place_queens(board_size, index, occupied_pos, solutions):
         """doc doc doc"""
         if index == board_size:
             solutions.append(occupied_pos[:])
@@ -33,12 +29,12 @@ def solve_queens_problem(board_size: int) -> List[List[int]]:
                 place_queens(board_size, index + 1, occupied_pos, solutions)
                 occupied_pos.pop()
 
-    solutions: List[List[int]] = []
+    solutions = []
     place_queens(board_size, 0, [], solutions)
     return solutions
 
 
-def main() -> None:
+def main():
     """doc doc doc"""
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
