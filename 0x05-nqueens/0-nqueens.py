@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 """doc doc doc"""
 import sys
+from typing import List
 
 
-def solve_queens_problem(board_size):
+def solve_queens_problem(board_size: int) -> List[List[int]]:
     """doc doc doc"""
 
-    def is_valid_position(pos, occupied_pos):
+    def is_valid_position(pos: int, occupied_pos: List[int]) -> bool:
         """doc doc doc"""
         for i in range(len(occupied_pos)):
             if (
@@ -17,7 +18,10 @@ def solve_queens_problem(board_size):
                 return False
         return True
 
-    def place_queens(board_size, index, occupied_pos, solutions):
+    def place_queens(
+        board_size: int, index: int, occupied_pos: List[int],
+        solutions: List[List[int]]
+    ) -> None:
         """doc doc doc"""
         if index == board_size:
             solutions.append(occupied_pos[:])
@@ -29,12 +33,12 @@ def solve_queens_problem(board_size):
                 place_queens(board_size, index + 1, occupied_pos, solutions)
                 occupied_pos.pop()
 
-    solutions = []
+    solutions: List[List[int]] = []
     place_queens(board_size, 0, [], solutions)
     return solutions
 
 
-def main():
+def main() -> None:
     """doc doc doc"""
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
