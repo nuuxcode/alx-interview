@@ -5,15 +5,19 @@ Main file for testing
 
 
 def makeChange(coins, amount):
-    if amount == 0:
+    """
+    How many of this type of coin can I get with my money? Okay,
+        I'll take that many. Now, how much money do I have left?
+        And how many coins do I have in my pocket?
+    """
+    if amount < 1:
         return 0
-    amounts = [float("inf")] * (amount + 1)
-    amounts[0] = 0
-
+    coins.sort(reverse=True)
+    count = 0
     for coin in coins:
-        for i in range(coin, amount + 1):
-            amounts[i] = min(amounts[i], amounts[i - coin] + 1)
-    if amounts[amount] != float("inf"):
-        return amounts[amount]
-    else:
-        return -1
+        if amount == 0:
+            break
+        num = amount // coin
+        amount -= num * coin
+        count += num
+    return count if amount == 0 else -1
